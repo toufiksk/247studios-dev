@@ -13,17 +13,30 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import styled from 'styled-components';
+import FixedNavbar from 'components/FixedNavbar';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+
+
+const AppBody = styled.div`
+  width: 100%;
+  min-height: 100%;
+  padding-top: 48px; 
+`;
+
+
 
 export default function App() {
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <FixedNavbar />
+      <AppBody>
+        <Switch>
+          <Route exact path="/home" component={HomePage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </AppBody>
     </div>
   );
 }
