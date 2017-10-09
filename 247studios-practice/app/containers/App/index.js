@@ -33,7 +33,7 @@ export default function App() {
       <FixedNavbar />
       <AppBody>
         <Switch>
-          <Route exact path="/home" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <Route component={NotFoundPage} />
         </Switch>
       </AppBody>

@@ -12,13 +12,40 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import Post from 'components/Post'
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      posts : '' 
+    }
+  }
+  componentWillMount(){
+      fetch('https://www.reddit.com/.json',{mode: 'cors'})
+                  .then(response => response.json())
+                  .then(data => this.setState({ posts: data.data.children }));
+  }
+
+  post(){
+      return (<p>hello</p>)
+  }
+  posts(){
+    var test="";
+    for (var index = 0; index < 10; index++) {
+      ;
+      
+    }
+    return test;
+  }
+ 
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div>
+         <Post subreddit="test" author="testauth" time="3h" commments="333" />
+         {this.post()}
+      </div>
     );
   }
 }
