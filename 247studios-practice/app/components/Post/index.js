@@ -32,6 +32,14 @@ line-height: 15px;
 color: #a5a4a4;
 `;
 
+const TitleArea = styled.div`
+position: relative;
+float: left;
+display: inline-block;
+font-size: 14px;
+line-height: 15px;
+`;
+
 
 class Post extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props){
@@ -48,13 +56,15 @@ class Post extends React.Component { // eslint-disable-line react/prefer-statele
             <div > 
             <TextArea> { this.props.subreddit } </TextArea>
             <Separator />
-            <TextArea> { this.props.author } </TextArea>
+            <TextArea> { this.props.domain } </TextArea>
             <Separator />
             <TextArea> { this.props.time } </TextArea>
             </div>
           </PostDescription>
           <PostTitleLine>
-            {this.props.title}
+            <TitleArea>
+              {this.props.title}
+            </TitleArea>  
           </PostTitleLine>          
         </ PostHeader >
         <PostFooter >

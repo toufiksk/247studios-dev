@@ -19,33 +19,27 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   constructor(props){
     super(props);
     this.state = {
-      posts : '' 
+      data: ''
     }
   }
-  componentWillMount(){
+  componentDidMount(){
       fetch('https://www.reddit.com/.json',{mode: 'cors'})
-                  .then(response => response.json())
-                  .then(data => this.setState({ posts: data.data.children }));
-  }
-
-  post(){
-      return (<p>hello</p>)
-  }
-  posts(){
-    var test="";
-    for (var index = 0; index < 10; index++) {
-      ;
-      
-    }
-    return test;
-  }
+            .then(response => response.json())
+            .then(json =>
+              this.setState({
+                data: json.data.children
+              }));
+ }
  
   render() {
-    return (
-      <div>
-         <Post subreddit="test" author="testauth" time="3h" commments="333" />
-         {this.post()}
-      </div>
-    );
+    if(this.state.data.length === 0){
+      return false //return false or a <Loader/> when you don't have anything in your message[]
+     }
+    console.log(this.state.data);
+    var posts = this.state.data;
+    var postsList = posts.map(function(post){
+                    return <Post subreddit={ "r/"+post.data.subreddit } domain={post.data.domain} title={post.data.title } />;
+                  })
+    return   <div>{postsList}</div>
   }
 }
